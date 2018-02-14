@@ -1,0 +1,17 @@
+services:
+
+    CoreShop\Payum\SaferpayBundle\Extension\ConvertPaymentExtension:
+        autowire: true
+        tags:
+            - { name: payum.extension, alias: saferpay_language_extension, factory: saferpay, gateway: saferpay, prepend: false }
+
+    CoreShop\Payum\SaferpayBundle\Form\Payment\SaferpayType:
+        tags:
+            - { name: coreshop.gateway_configuration_type, type: saferpay }
+            - { name: form.type }
+
+    payum.saferpay_gateway_factory:
+        class: Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder
+        arguments: [DachcomDigital\Payum\Saferpay\SaferpayGatewayFactory]
+        tags:
+            - {name: payum.gateway_factory_builder, factory: saferpay }

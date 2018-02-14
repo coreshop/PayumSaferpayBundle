@@ -1,0 +1,4 @@
+core_shop_payment:
+    pimcore_admin:
+        js:
+            saferpay: /bundles/saferpay/pimcore/js/saferpay.js

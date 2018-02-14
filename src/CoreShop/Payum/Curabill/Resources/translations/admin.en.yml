@@ -1,0 +1,4 @@
+saferpay.config.environment: 'Umgebung'
+saferpay.config.username: 'Username'
+saferpay.config.transaction_token: 'Transaction Token'
+saferpay.config.optional_parameter: 'Optional Parameters'
