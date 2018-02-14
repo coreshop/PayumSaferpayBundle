@@ -82,6 +82,13 @@ coreshop.provider.gateways.saferpay = Class.create(coreshop.provider.gateways.ab
                 value: config.customerId ? config.customerId : ''
             },
             {
+                xtype: 'textfield',
+                fieldLabel: t('saferpay.config.terminal_id'),
+                name: 'gatewayConfig.config.terminalId',
+                length: 255,
+                value: config.terminalId ? config.terminalId : ''
+            },
+            {
                 xtype: 'fieldset',
                 title: t('saferpay.config.optional_parameter'),
                 collapsible: true,
