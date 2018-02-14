@@ -5,9 +5,11 @@ It requires the [dachcom-digital/payum-saferpay](https://github.com/dachcom-digi
 ## Installation
 
 #### 1. Composer
-    ```json
+
+```json
     "coreshop/payum-saferpay-bundle": "dev-master"
-    ```
+```
+
 #### 2. Activate
 Enable the Bundle in Pimcore Extension Manager
 
