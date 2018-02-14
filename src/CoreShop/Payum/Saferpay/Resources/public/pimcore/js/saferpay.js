@@ -13,10 +13,7 @@
 pimcore.registerNS('coreshop.provider.gateways.saferpay');
 coreshop.provider.gateways.saferpay = Class.create(coreshop.provider.gateways.abstract, {
 
-    optionalFields: [
-        'processing',
-        'shop_code'
-    ],
+    optionalFields: [],
 
     getLayout: function (config) {
 
@@ -72,10 +69,17 @@ coreshop.provider.gateways.saferpay = Class.create(coreshop.provider.gateways.ab
             },
             {
                 xtype: 'textfield',
-                fieldLabel: t('saferpay.config.transaction_token'),
-                name: 'gatewayConfig.config.transactionToken',
+                fieldLabel: t('saferpay.config.password'),
+                name: 'gatewayConfig.config.password',
                 length: 255,
-                value: config.transactionToken ? config.transactionToken : ''
+                value: config.password ? config.password : ''
+            },
+            {
+                xtype: 'textfield',
+                fieldLabel: t('saferpay.config.customer_id'),
+                name: 'gatewayConfig.config.customerId',
+                length: 255,
+                value: config.customerId ? config.customerId : ''
             },
             {
                 xtype: 'fieldset',

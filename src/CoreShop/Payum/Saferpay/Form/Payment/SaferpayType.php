@@ -21,7 +21,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-final class SaverpayType extends AbstractType
+final class SaferpayType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -43,7 +43,14 @@ final class SaverpayType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('transactionToken', TextType::class, [
+            ->add('password', PasswordType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'groups' => 'coreshop',
+                    ]),
+                ],
+            ])
+            ->add('customerId', TextType::class, [
                 'constraints' => [
                     new NotBlank([
                         'groups' => 'coreshop',
