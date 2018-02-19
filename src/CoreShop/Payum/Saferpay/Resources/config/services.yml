@@ -10,6 +10,10 @@ services:
             - { name: coreshop.gateway_configuration_type, type: saferpay }
             - { name: form.type }
 
+    CoreShop\Payum\SaferpayBundle\Event\RefundEvent:
+        arguments:
+            - '@payum'
+
     payum.saferpay_gateway_factory:
         class: Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder
         arguments: [DachcomDigital\Payum\Saferpay\SaferpayGatewayFactory]

@@ -2,3 +2,13 @@ core_shop_payment:
     pimcore_admin:
         js:
             saferpay: /bundles/saferpay/pimcore/js/saferpay.js
+
+core_shop_resource:
+    state_machine:
+        callbacks:
+            coreshop_payment:
+                after:
+                    refund_payment:
+                        on: ['refund']
+                        do: ['@CoreShop\Payum\SaferpayBundle\Event\RefundEvent', 'refund']
+                        args: ['object']

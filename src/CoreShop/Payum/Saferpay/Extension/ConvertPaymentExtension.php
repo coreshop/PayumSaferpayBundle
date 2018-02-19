@@ -61,13 +61,12 @@ final class ConvertPaymentExtension implements ExtensionInterface
 
         /** @var OrderInterface $order */
         $order = $this->orderRepository->find($payment->getOrderId());
-        $gatewayLanguage = 'en_EN';
+        $gatewayLanguage = 'en';
 
         if (!empty($order->getOrderLanguage())) {
             $orderLanguage = $order->getOrderLanguage();
-            // post finance always requires a full language ISO Code
-            if (strpos($orderLanguage, '_') === false) {
-                $gatewayLanguage = $orderLanguage . '_' . strtoupper($orderLanguage);
+            if (strpos($orderLanguage, '_') !== false) {
+                $gatewayLanguage = explode('_', $orderLanguage)[0];
             } else {
                 $gatewayLanguage = $orderLanguage;
             }
@@ -75,7 +74,7 @@ final class ConvertPaymentExtension implements ExtensionInterface
 
         $result = ArrayObject::ensureArrayObject($request->getResult());
 
-        $result['LANGUAGE'] = $gatewayLanguage;
+        $result['optional_payer_language_code'] = $gatewayLanguage;
 
         $request->setResult((array)$result);
 
