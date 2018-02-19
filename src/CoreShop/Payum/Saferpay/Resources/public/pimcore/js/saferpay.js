@@ -13,7 +13,16 @@
 pimcore.registerNS('coreshop.provider.gateways.saferpay');
 coreshop.provider.gateways.saferpay = Class.create(coreshop.provider.gateways.abstract, {
 
-    optionalFields: [],
+    optionalFields: [
+        {name: 'payment_methods', defaultValue: '', description: 'Possible values: AMEX, BANCONTACT, BONUS, DINERS, DIRECTDEBIT, EPRZELEWY, EPS, GIROPAY, IDEAL, INVOICE, JCB, MAESTRO, MASTERCARD, MYONE, PAYPAL, PAYDIREKT, POSTCARD, POSTFINANCE, SOFORT, TWINT, UNIONPAY, VISA.' },
+        {name: 'wallets', defaultValue: 'MASTERPASS', description: 'Possible values: MASTERPASS'},
+        {name: 'notification_merchant_email', defaultValue: '', description: ''},
+        {name: 'notification_payer_email', defaultValue: '', description: ''},
+        {name: 'styling_css_url', defaultValue: '', description: ''},
+        {name: 'styling_content_security_enabled', defaultValue: '', description: ''},
+        {name: 'styling_theme', defaultValue: '', description: ''},
+        {name: 'config_set', defaultValue: '', description: ''},
+    ],
 
     getLayout: function (config) {
 
@@ -29,21 +38,34 @@ coreshop.provider.gateways.saferpay = Class.create(coreshop.provider.gateways.ab
             xtype: 'label',
             anchor: '100%',
             style: 'display:block; padding:5px; background:#f5f5f5; border:1px solid #eee; font-weight: 300;',
-            html: 'Parameter Cookbook: not available'
+            html: '<a href="https://saferpay.github.io/jsonapi/index.html#Payment_v1_PaymentPage_Initialize">Payment_v1_PaymentPage_Initialize (v 1.8)</a>'
         }];
 
         Ext.Array.each(this.optionalFields, function (field) {
-            var value = config.optionalParameters && config.optionalParameters[field] ? config.optionalParameters[field] : '';
+            var fieldName = field.name,
+                defaultValue = field.defaultValue,
+                description = field.description,
+                value = config.optionalParameters && config.optionalParameters[fieldName] ? config.optionalParameters[fieldName] : defaultValue;
+
             optionalFields.push({
                 xtype: 'textfield',
-                fieldLabel: field,
-                name: 'gatewayConfig.config.optionalParameters.' + field,
+                fieldLabel: fieldName,
+                name: 'gatewayConfig.config.optionalParameters.' + fieldName,
                 length: 255,
                 flex: 1,
                 labelWidth: 250,
                 anchor: '100%',
                 value: value
-            })
+            });
+
+            if(description != '') {
+                optionalFields.push({
+                    xtype: 'label',
+                    text: description,
+                    value: value,
+                    style: 'margin: 5px 0; display:block; padding:2px; background:#f5f5f5; border:1px solid #eee; font-weight: 300; word-wrap:break-word;'
+                });
+            }
         });
 
         return [
