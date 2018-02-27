@@ -20,7 +20,7 @@
     ],
     "require": {
         "php": "^7.0",
-        "dachcom-digital/payum-saferpay": "dev-master"
+        "dachcom-digital/payum-saferpay": "~1.0.0"
     },
     "config": {
         "bin-dir": "bin"
