@@ -7,7 +7,7 @@ It requires the [dachcom-digital/payum-saferpay](https://github.com/dachcom-digi
 #### 1. Composer
 
 ```json
-    "coreshop/payum-saferpay-bundle": "dev-master"
+    "coreshop/payum-saferpay-bundle": "~1.0.0"
 ```
 
 #### 2. Activate
