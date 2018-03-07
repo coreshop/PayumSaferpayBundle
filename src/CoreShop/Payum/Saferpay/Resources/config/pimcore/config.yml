@@ -3,10 +3,10 @@ core_shop_payment:
         js:
             saferpay: /bundles/saferpay/pimcore/js/saferpay.js
 
-core_shop_resource:
+core_shop_workflow:
     state_machine:
-        callbacks:
-            coreshop_payment:
+        coreshop_payment:
+            callbacks:
                 after:
                     refund_payment:
                         on: ['refund']
