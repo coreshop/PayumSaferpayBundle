@@ -40,7 +40,7 @@ class RefundEvent
      */
     public function refund(PaymentInterface $payment)
     {
-        $saferpay = $this->payum->getGateway('saferpay');
+        $saferpay = $this->payum->getGateway($payment->getPaymentProvider()->getGatewayConfig()->getGatewayName());
         $saferpay->execute(new Refund($payment));
     }
 }

@@ -71,8 +71,8 @@ final class SaferpayType extends AbstractType
             ])
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
                 $data = $event->getData();
-                //$data['payum.http_client'] = '@coreshop.payum.http_client';
+                $data['lockPath'] = PIMCORE_SYSTEM_TEMP_DIRECTORY;
+                $event->setData($data);
             });
-
     }
 }
