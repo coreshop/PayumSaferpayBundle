@@ -71,7 +71,7 @@ final class SaferpayType extends AbstractType
             ])
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
                 $data = $event->getData();
-                $data['lockPath'] = PIMCORE_SYSTEM_TEMP_DIRECTORY;
+                $data['lockPath'] = sys_get_temp_dir();
                 $event->setData($data);
             });
     }
