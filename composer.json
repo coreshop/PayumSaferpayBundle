@@ -21,7 +21,7 @@
     "require": {
         "php": "^7.1",
         "dachcom-digital/payum-saferpay": "~1.2.0",
-        "coreshop/core-shop": "~2.0.0"
+        "coreshop/core-shop": "^2.0"
     },
     "config": {
         "bin-dir": "bin"
