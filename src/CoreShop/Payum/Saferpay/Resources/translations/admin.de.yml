@@ -1,7 +1,7 @@
 saferpay.config.environment: 'Umgebung'
 saferpay.config.username: 'Benutzername'
 saferpay.config.password: 'Passwort'
-saferpay.config.customer_id: 'KUnden ID'
+saferpay.config.customer_id: 'Kunden ID'
 saferpay.config.terminal_id: 'Terminal ID'
 saferpay.config.interface: 'Interface Strategie'
 saferpay.config.optional_parameter: 'Optionale Parameter'
