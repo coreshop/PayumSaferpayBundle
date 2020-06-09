@@ -20,7 +20,7 @@
     ],
     "require": {
         "php": "^7.2",
-        "karser/payum-saferpay": "~1.2.0",
+        "karser/payum-saferpay": "^0.3",
         "coreshop/core-shop": "^2.2"
     },
     "config": {
