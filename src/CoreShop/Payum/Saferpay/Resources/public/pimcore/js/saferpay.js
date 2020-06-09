@@ -32,9 +32,13 @@ coreshop.provider.gateways.saferpay = Class.create(coreshop.provider.gateways.ab
                 ['test', 'Test'],
                 ['production', 'Production']
             ]
-        });
-
-        var optionalFields = [{
+        }), storeInterface = new Ext.data.ArrayStore({
+            fields: ['interface', 'interfaceName'],
+            data: [
+                ['PAYMENT_PAGE', 'Payment Page'],
+                ['TRANSACTION', 'Transaction']
+            ]
+        }), optionalFields = [{
             xtype: 'label',
             anchor: '100%',
             style: 'display:block; padding:5px; background:#f5f5f5; border:1px solid #eee; font-weight: 300;',
@@ -58,7 +62,7 @@ coreshop.provider.gateways.saferpay = Class.create(coreshop.provider.gateways.ab
                 value: value
             });
 
-            if(description != '') {
+            if (description !== '') {
                 optionalFields.push({
                     xtype: 'label',
                     text: description,
@@ -109,6 +113,19 @@ coreshop.provider.gateways.saferpay = Class.create(coreshop.provider.gateways.ab
                 name: 'gatewayConfig.config.terminalId',
                 length: 255,
                 value: config.terminalId ? config.terminalId : ''
+            },
+            {
+                xtype: 'combobox',
+                fieldLabel: t('saferpay.config.interface'),
+                name: 'gatewayConfig.config.interface',
+                value: config.interface ? config.interface : 'PAYMENT_PAGE',
+                store: storeInterface,
+                triggerAction: 'all',
+                valueField: 'interface',
+                displayField: 'interfaceName',
+                mode: 'local',
+                forceSelection: true,
+                selectOnFocus: true
             },
             {
                 xtype: 'fieldset',

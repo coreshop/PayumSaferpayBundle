@@ -64,6 +64,13 @@ final class SaferpayType extends AbstractType
                     ]),
                 ],
             ])
+             ->add('interface', TextType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'groups' => 'coreshop',
+                    ]),
+                ],
+            ])
             ->add('optionalParameters', CollectionType::class, [
                 'allow_add'    => true,
                 'allow_delete' => true,
