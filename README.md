@@ -1,13 +1,13 @@
 # CoreShop Saferpay Payum Connector
 This Bundle activates the Saferpay PaymentGateway in CoreShop.
-It requires the [dachcom-digital/payum-saferpay](https://github.com/dachcom-digital/payum-saferpay) repository which will be installed automatically.
+It requires the [karser/PayumSaferpay](https://github.com/karser/PayumSaferpay) repository which will be installed automatically.
 
 ## Installation
 
 #### 1. Composer
 
 ```json
-    "coreshop/payum-saferpay-bundle": "~1.0.0"
+    "coreshop/payum-saferpay-bundle": "~2.0.0"
 ```
 
 #### 2. Activate
