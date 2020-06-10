@@ -74,10 +74,16 @@ final class ConvertPaymentExtension implements ExtensionInterface
 
         $result = ArrayObject::ensureArrayObject($request->getResult());
 
-        $result['optional_payer_language_code'] = $gatewayLanguage;
+        $payerData = [];
+        if (isset($result['Payer']) && is_array($result['Payer'])) {
+            $payerData = $result['Payer'];
+        }
 
-        $request->setResult((array)$result);
+        $payerData['LanguageCode'] = $gatewayLanguage;
 
+        $result['Payer'] = $payerData;
+
+        $request->setResult((array) $result);
     }
 
     /**
@@ -85,7 +91,6 @@ final class ConvertPaymentExtension implements ExtensionInterface
      */
     public function onPreExecute(Context $context)
     {
-
     }
 
     /**

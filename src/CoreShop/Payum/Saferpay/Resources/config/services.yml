@@ -12,11 +12,12 @@ services:
             - { name: form.type }
 
     CoreShop\Payum\SaferpayBundle\Event\RefundEvent:
+        public: true
         arguments:
             - '@payum'
 
     payum.saferpay_gateway_factory:
         class: Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder
-        arguments: [DachcomDigital\Payum\Saferpay\SaferpayGatewayFactory]
+        arguments: [Karser\PayumSaferpay\SaferpayGatewayFactory]
         tags:
             - {name: payum.gateway_factory_builder, factory: saferpay }

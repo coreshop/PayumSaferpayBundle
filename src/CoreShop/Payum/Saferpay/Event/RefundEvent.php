@@ -10,10 +10,11 @@
  * @license    https://www.coreshop.org/license     GNU General Public License version 3 (GPLv3)
  */
 
-
 namespace CoreShop\Payum\SaferpayBundle\Event;
 
+use CoreShop\Bundle\PayumBundle\Model\GatewayConfig;
 use CoreShop\Component\Payment\Model\PaymentInterface;
+use Payum\Core\Reply\ReplyInterface;
 use Payum\Core\Request\Refund;
 use Payum\Core\Payum;
 
@@ -25,8 +26,6 @@ class RefundEvent
     protected $payum;
 
     /**
-     * RefundEvent constructor.
-     *
      * @param Payum $payum
      */
     public function __construct(Payum $payum)
@@ -36,11 +35,14 @@ class RefundEvent
 
     /**
      * @param PaymentInterface $payment
-     * @throws \Payum\Core\Reply\ReplyInterface
+     * @throws ReplyInterface
      */
     public function refund(PaymentInterface $payment)
     {
-        $saferpay = $this->payum->getGateway($payment->getPaymentProvider()->getGatewayConfig()->getGatewayName());
-        $saferpay->execute(new Refund($payment));
+        /** @var GatewayConfig $gatewayConfig */
+        $gatewayConfig = $payment->getPaymentProvider()->getGatewayConfig();
+
+        $saferPay = $this->payum->getGateway($gatewayConfig->getGatewayName());
+        $saferPay->execute(new Refund($payment));
     }
 }

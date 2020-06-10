@@ -19,9 +19,9 @@
         }
     ],
     "require": {
-        "php": "^7.1",
-        "dachcom-digital/payum-saferpay": "~1.2.0",
-        "coreshop/core-shop": "^2.0"
+        "php": "^7.2",
+        "karser/payum-saferpay": "^0.3",
+        "coreshop/core-shop": "^2.2"
     },
     "config": {
         "bin-dir": "bin"

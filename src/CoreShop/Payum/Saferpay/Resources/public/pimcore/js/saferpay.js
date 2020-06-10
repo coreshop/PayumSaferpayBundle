@@ -22,6 +22,7 @@ coreshop.provider.gateways.saferpay = Class.create(coreshop.provider.gateways.ab
         {name: 'styling_content_security_enabled', defaultValue: '', description: ''},
         {name: 'styling_theme', defaultValue: '', description: ''},
         {name: 'config_set', defaultValue: '', description: ''},
+        {name: 'payer_note', defaultValue: '', description: ''},
     ],
 
     getLayout: function (config) {
@@ -32,13 +33,17 @@ coreshop.provider.gateways.saferpay = Class.create(coreshop.provider.gateways.ab
                 ['test', 'Test'],
                 ['production', 'Production']
             ]
-        });
-
-        var optionalFields = [{
+        }), storeInterface = new Ext.data.ArrayStore({
+            fields: ['interface', 'interfaceName'],
+            data: [
+                ['PAYMENT_PAGE', 'Payment Page'],
+                ['TRANSACTION', 'Transaction']
+            ]
+        }), optionalFields = [{
             xtype: 'label',
             anchor: '100%',
             style: 'display:block; padding:5px; background:#f5f5f5; border:1px solid #eee; font-weight: 300;',
-            html: '<a href="https://saferpay.github.io/jsonapi/index.html#Payment_v1_PaymentPage_Initialize">Payment_v1_PaymentPage_Initialize (v 1.8)</a>'
+            html: '<a href="https://saferpay.github.io/jsonapi/index.html#Payment_v1_PaymentPage_Initialize">Payment (PaymentPage, v1.10)</a>'
         }];
 
         Ext.Array.each(this.optionalFields, function (field) {
@@ -58,7 +63,7 @@ coreshop.provider.gateways.saferpay = Class.create(coreshop.provider.gateways.ab
                 value: value
             });
 
-            if(description != '') {
+            if (description !== '') {
                 optionalFields.push({
                     xtype: 'label',
                     text: description,
@@ -109,6 +114,19 @@ coreshop.provider.gateways.saferpay = Class.create(coreshop.provider.gateways.ab
                 name: 'gatewayConfig.config.terminalId',
                 length: 255,
                 value: config.terminalId ? config.terminalId : ''
+            },
+            {
+                xtype: 'combobox',
+                fieldLabel: t('saferpay.config.interface'),
+                name: 'gatewayConfig.config.interface',
+                value: config.interface ? config.interface : 'PAYMENT_PAGE',
+                store: storeInterface,
+                triggerAction: 'all',
+                valueField: 'interface',
+                displayField: 'interfaceName',
+                mode: 'local',
+                forceSelection: true,
+                selectOnFocus: true
             },
             {
                 xtype: 'fieldset',
