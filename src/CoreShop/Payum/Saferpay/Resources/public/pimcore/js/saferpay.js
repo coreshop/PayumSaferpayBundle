@@ -22,6 +22,7 @@ coreshop.provider.gateways.saferpay = Class.create(coreshop.provider.gateways.ab
         {name: 'styling_content_security_enabled', defaultValue: '', description: ''},
         {name: 'styling_theme', defaultValue: '', description: ''},
         {name: 'config_set', defaultValue: '', description: ''},
+        {name: 'payer_note', defaultValue: '', description: ''},
     ],
 
     getLayout: function (config) {
