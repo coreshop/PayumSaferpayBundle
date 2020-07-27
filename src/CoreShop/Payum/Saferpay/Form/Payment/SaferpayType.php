@@ -13,6 +13,7 @@
 namespace CoreShop\Payum\SaferpayBundle\Form\Payment;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -36,6 +37,7 @@ final class SaferpayType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('sandbox', CheckboxType::class)
             ->add('username', PasswordType::class, [
                 'constraints' => [
                     new NotBlank([
@@ -64,7 +66,7 @@ final class SaferpayType extends AbstractType
                     ]),
                 ],
             ])
-             ->add('interface', TextType::class, [
+            ->add('interface', TextType::class, [
                 'constraints' => [
                     new NotBlank([
                         'groups' => 'coreshop',
@@ -79,6 +81,18 @@ final class SaferpayType extends AbstractType
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
                 $data = $event->getData();
                 $data['lockPath'] = sys_get_temp_dir();
+                $event->setData($data);
+            })->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+
+                $data = $event->getData();
+
+                $sandBox = true;
+                if (isset($data['environment']) && $data['environment'] === 'production') {
+                    $sandBox = false;
+                }
+
+                $data['sandbox'] = $sandBox;
+
                 $event->setData($data);
             });
     }
