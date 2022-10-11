@@ -42,7 +42,7 @@ final class ConvertPaymentExtension implements ExtensionInterface
     {
         $action = $context->getAction();
 
-        $previousActionClassName = get_class($action);
+        $previousActionClassName = is_object($action) ? get_class($action) : false;
         if (false === stripos($previousActionClassName, 'ConvertPaymentAction')) {
             return;
         }
