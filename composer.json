@@ -21,7 +21,7 @@
     "require": {
         "php": "^7.2|^8.0",
         "karser/payum-saferpay": "^0.3",
-        "coreshop/core-shop": "^2.2|^3.0"
+        "coreshop/core-shop": "^2.2|^3.0|^4.0"
     },
     "config": {
         "bin-dir": "bin"
